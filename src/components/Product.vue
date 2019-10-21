@@ -63,14 +63,20 @@
 
 <script>
 import Product from "../Model/Product";
+import firebase from "firebase";
 
 export default {
   data: () => ({
     products: [],
-    product: {},
+    product: {
+      name:"",
+      price:"",
+      qnty:"",
+      descr:"",
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    },
     search: "",
-    panel: "",
-
+    panel: null,
     headers: [
       { text: "nome", value: "name" },
       { text: "preço", value: "price" },
@@ -131,11 +137,14 @@ export default {
     },
 
     clear() {
-      this.product = {};
+      this.product.name="";
+      this.product.price="";
+      this.product.qnty="";
+      this.product.descr="";
     },
 
     togglePanel() {
-      this.panel = this.panel == 0 ? null : 0;
+      return this.panel = this.panel == 0 ? null : 0;
     }
   }
 };

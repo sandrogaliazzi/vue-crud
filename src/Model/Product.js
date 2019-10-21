@@ -5,7 +5,7 @@ const product = db.collection('products');
 export default {
 
     getAll: () => {
-        return product
+        return product.orderBy('createdAt', 'desc')
     },
 
     add: (object) => {
